@@ -1,7 +1,6 @@
 #!/usr/bin/env python
 import numpy as np
-import casadi as ca
-import matplotlib.pyplot as plt
+import casadi as ca     # casadi求解器，下面的非线性优化问题都使用casadi求解
 import time
 
 def MPC(self_state, goal_state):
