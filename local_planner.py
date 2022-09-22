@@ -5,7 +5,7 @@ from geometry_msgs.msg import Pose, PoseArray, PoseStamped, Point, Twist
 from nav_msgs.msg import Path, Odometry, OccupancyGrid
 import numpy as np
 import tf
-from MPC import MPC # 调用 mpc.py
+from MPC import MPC # 调用 MPC.py
 from sensor_msgs.msg import LaserScan
 from visualization_msgs.msg import Marker,MarkerArray
 from std_srvs.srv import SetBool
@@ -128,7 +128,11 @@ class Local_Planner():
             for i in range(size):
                 self.desired_global_path[0][i,0]=data.data[3*(size-i)-3]
                 self.desired_global_path[0][i,1]=data.data[3*(size-i)-2]
-                
+                # 下面的步骤非常重要：因为四元数或者rpy表示的偏航角和MPC需要的theta不是一一对应的关系
+                # 以rpy为例，其偏航角的范围是[-3.14, 3.14]，而MPC计算的并不直接表示该点的rpy
+                # 如，当我们期望的朝向Yaw为-1.57，当前小车的朝向是3.14，
+                # 那么这个时候我们直接给MPC这样一个期望朝向是会出问题的，相当于让小车从180度直接转到-90度
+                # 因此，我们需要根据当前机器人朝向以及期望朝向进行一个分类讨论，给出合理的期望朝向
                 if(data.data[3*(size-i)-1] - car_yaw > 3.14):
                     self.desired_global_path[0][i,2] = data.data[3*(size-i)-1] - 2.0*np.pi
                 elif(data.data[3*(size-i)-1] - car_yaw < -3.14):

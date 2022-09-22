@@ -1,15 +1,15 @@
 #!/usr/bin/env python
 import numpy as np
-import casadi as ca     # casadi求解器，下面的非线性优化问题都使用casadi求解
+import casadi as ca     # casadi求解器，下面MPC的非线性优化问题将使用casadi求解
 import time
 
 def MPC(self_state, goal_state):
     opti = ca.Opti()
     ## parameters for optimization
-    T = 0.020
-    N = 50  # MPC horizon
-    v_max = 1.5
-    omega_max = 1.0
+    T = 0.020                           # MPC的离散时间，需要与local_planner.py的self.replan_period相等
+    N = 50                              # MPC的预测步长，需要与local_planner.py的self.N保持相等
+    v_max = 1.5                         # 约束的小车最大线速度
+    omega_max = 1.0                     # 约束的小车最大角速度
     Q = np.array([[2.0, 0.0, 0.0],[0.0, 2.0, 0.0],[0.0, 0.0, 1.0]])
     R = np.array([[0.5, 0.0], [0.0, 0.4]])
     goal = goal_state[:,:3]
@@ -52,9 +52,9 @@ def MPC(self_state, goal_state):
     opti.set_value(opt_x0, self_state[:,:3])
 
     try:
-        sol = opti.solve()
-        u_res = sol.value(opt_controls)
-        state_res = sol.value(opt_states)
+        sol = opti.solve()                  # 优化!!!!!!!!!!!!!
+        u_res = sol.value(opt_controls)     # 获得最优控制输入序列
+        state_res = sol.value(opt_states)   # 获得最优状态序列
     except:
         state_res = np.repeat(self_state[:3],N+1,axis=0)
         u_res = np.zeros([N,2])
