@@ -6,7 +6,7 @@
 
 ​	对于两轮差速小车（四轮差速小车同样适用），其运动学模型如下：
 
-<img src="/home/pi/Desktop/MPC_follower/model.jpg" style="zoom: 50%;" />
+![image](https://github.com/WX-James/mpc_follower/blob/main/images/model.jpg)
 
 ​	其中，差速小车的状态量有三个，即小车x方向位置、y方向位置和朝向Theta；小车的控制量有两个，即线速度V和角速度W，也是小车的 **cmd_vel**。
 
@@ -15,8 +15,7 @@
 ## 2. 代价函数
 
 ​	**MPC**的代价函数如下：
-
-<img src="/home/pi/Desktop/MPC_follower/cost_function.png" style="zoom:50%;" />
+![image](https://github.com/WX-James/mpc_follower/blob/main/images/cost_function.png)
 
 ​	其中，**X**k 矩阵表示小车k时刻的状态，，**U**k 矩阵表示小车k时刻的控制量；**Q **矩阵和 **R** 矩阵分别为状态和控制量的权重，也即我们更看重小车的跟踪误差，还是更看重小车的能耗。Lambda 是能量的附加权重项。
 
