@@ -1,0 +1,15 @@
+mpc:
+  du_threshold: 0.001
+  max_iter: 150
+  dt: 0.02
+  predict_steps: 50
+  delay_num: 5
+  max_omega: 2.52
+  max_domega: 3.0
+  max_speed: 1.5
+  min_speed: -1.5
+  max_accel: 1.0
+  control_a: false
+  matrix_q: [50.0, 50.0, 2.5, 0.5]
+  matrix_r: [0.1, 0.01]
+  matrix_rd: [0.01, 0.5]
