@@ -2,7 +2,7 @@
 
 # 基于非线性模型预测控制的差速小车轨迹跟踪
 
-本仓库来源于清华大学PUTN项目的mpc轨迹跟踪器(https://github.com/jianzhuozhuTHU/putn)，笔者根据项目需求将其提取和修改作为独立的功能包，并提供使用说明。
+本仓库来源于清华大学PUTN项目的mpc轨迹跟踪器，笔者根据项目需求将其提取和修改作为独立的功能包，并提供使用说明。(https://github.com/jianzhuozhuTHU/putn)
 
 ## 1. 差速小车的运动学模型
 
