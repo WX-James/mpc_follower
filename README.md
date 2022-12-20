@@ -2,7 +2,7 @@
 
 # 基于非线性模型预测控制的差速小车轨迹跟踪
 
-本仓库来源于清华大学PUTN项目的mpc轨迹跟踪器，笔者根据项目需求将其提取和修改作为独立的功能包，并提供使用说明。(https://github.com/jianzhuozhuTHU/putn)
+本仓库来源于清华大学PUTN项目的mpc轨迹跟踪器，笔者根据项目需求将其提取和修改作为独立的功能包，并提供使用说明。(https://github.com/jianzhuozhuTHU/putn)。本Python代码添加了中文注释，如果遇到无法运行的情况，可自行去掉中文注释。
 
 ## 1. 差速小车的运动学模型
 
@@ -27,7 +27,7 @@
 
 $ pip install casadi
 
-## 3. MPC轨迹跟踪的Python代码
+## 4. MPC轨迹跟踪的Python代码
 
 ### （1）local_planner.py
 
